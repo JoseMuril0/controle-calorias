@@ -73,13 +73,13 @@ def select_cal(datas, ide): # Procura todos os alimentos cosumidos no dia #
     return listaRetorno
 
 @commit_close
-def alimento_delete (descricao, datas): # deleta alimento #
+def alimento_delete (idpessoa, descricao, datas): # deleta alimento #
     return """
-    DELETE FROM alimenta WHERE descricao = '{}' and datas = '{}'
-    """.format(descricao, datas)
+    DELETE FROM alimenta WHERE descricao = '{}' and datas = '{}' and id_pessoa = {}
+    """.format(descricao, datas, idpessoa)
 
 @commit_close
-def delete_alimento (iddpessoa): # Deleta alimento cujo o idpessoa jáa não existe mais #
+def delete_alimento (iddpessoa): # Deleta alimento cujo o idpessoa já não existe mais #
     return """
     DELETE FROM alimenta WHERE id_pessoa = {}
     """.format(iddpessoa)

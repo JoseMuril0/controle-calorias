@@ -4,8 +4,32 @@ from comandos import alimento_delete, delete_alimento
 from pprint import pprint
 import os
 
+#alimento_delete(1, 'ARROZ 160G', '18/02/2018')
+def func_delete_alimento(): # Deletar alimentos de acordo com a data#
+    print('+-----------------------------------+')
+    print('|          EXCLUIR DADOS            |')
+    print('+-----------------------------------+')
+    idpessoa = int(input('ID USUARIO: '))
+    descricao = input('DESCRICAO: ')
+    datas = input('DATA: (xx/xx/xxxx): ')
+    alimento_delete(idpessoa, descricao, datas)
+
+
 def imprima_img(): # E so para acrentar imgs de interação  com o usuario#
     pass
+def cadastro_pessoa():
+    print('+-----------------------------------+')
+    print('|       PAINEL DE CADASTRO          |')
+    print('+-----------------------------------+')
+    nome = input('NOME: ')
+    peso = float(input('PESO: '))
+    altura = float(input('ALTURA: '))
+    sexo = input('SEXO: ')
+    tdee = float(input('TDEE: '))
+    bd_insert(nome, peso, altura, sexo, tdee)
+    print('---------------------------------------')
+    os.system('pause')
+    os.system('cls')
 
 def mostra_dados (lista_aux): # mostra os dados que recebeu#
     print('+--------------------------------------+')
@@ -77,7 +101,22 @@ def insert_a(): # Insere eu alimento de uma pessoa #
     os.system('cls')
 
 def func_update_usuario (): # jaja implemento#
-    pass
+    print('+-----------------------------------+')
+    print('|         PAINEL DE EDITAR          |')
+    print('+-----------------------------------+')
+    r = input('EDITAR (PESO OU TDEE): ')
+    if r == 'PESO':
+        peso = float(input('NOVO PESO: '))
+        nome = input('NOME DO USUARIO: ')
+        bd_update_peso(peso, nome)
+        print('-------------------------------------')
+    elif r == 'TDEE':
+        tdee = float(input('NOVO TDEE: '))
+        nome = input('NOME DO USUARIO: ')
+        bd_update_tdee(tdee, nome)
+        print('------------------------------------')
+    os.system('pause')
+    os.system('cls')
 
 def menu(): # menu #
     print('+----------------------------------------------------------------------+')
@@ -99,22 +138,17 @@ while r != 8:
     r = int(input('Digite: '))
     os.system('cls')
     if (r == 1):
-        print('+-----------------------------------+')
-        print('|       PAINEL DE CADASTRO          |')
-        print('+-----------------------------------+')
-        nome = input('NOME: ')
-        peso = float(input('PESO: '))
-        altura = float(input('ALTURA: '))
-        sexo = input('SEXO: ')
-        tdee = float(input('TDEE: '))
-        bd_insert(nome, peso, altura, sexo, tdee)
-        print('CADASTRO CONCLUIDO COM SUCESSO {}'.format(nome))
+        cadastro_pessoa()
     elif (r == 2):
         insert_a()
     elif (r == 3):
         caloria_bd()
     elif (r == 4):
         func_dados_usuario()
+    elif (r == 5):
+        func_update_usuario()
+    elif (r == 6):
+        func_delete_alimento()
     else:
         print('OPCAO INVALIDA OU INATIVA')
 
