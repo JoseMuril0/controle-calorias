@@ -15,6 +15,12 @@ def commit_close(func):
     return decorator
 
 @commit_close
+def bd_delete (id_pessoa):
+    return """
+    DELETE FROM pessoa WHERE idpessoa = {}
+    """.format(id_pessoa)
+
+@commit_close
 def bd_insert(nome, peso, altura, sexo, tdee): # Insere no banco#
     return """
     INSERT INTO pessoa (nome, peso, altura, sexo, tdee)
@@ -65,3 +71,9 @@ def select_cal(datas, ide): # Procura todos os alimentos cosumidos no dia #
     for val in cur.execute(sql, (datas, ide)):
         listaRetorno.append(val)
     return listaRetorno
+
+@commit_close
+def alimento_delete (descricao, datas): # deleta alimento #
+    return """
+    DELETE FROM alimenta WHERE descricao = '{}' and datas = '{}'
+    """.format(descricao, datas)

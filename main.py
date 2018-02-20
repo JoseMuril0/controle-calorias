@@ -1,7 +1,57 @@
 from comandos import bd_insert, bd_select_dados, bd_update_peso, bd_update_tdee
-from comandos import insert_Alimento, select_cal
+from comandos import insert_Alimento, select_cal, bd_delete
+from comandos import alimento_delete
 from pprint import pprint
 import os
+
+#alimento_delete('SORVETE 200G', '19/02/2018')
+
+def insert_a():
+    print('+-----------------------------------+')
+    print('|             ALIMENTO              |')
+    print('+-----------------------------------+')
+    descricao = input('DESCRICAO: ')
+    calorias = float(input('CALORIAS: '))
+    datas = input('DATA (xx/xx/xxxx): ')
+    idpessoa = int(input('ID: '))
+    insert_Alimento(descricao, calorias, datas, idpessoa)
+    print('\n\n CONCLUIDO COM SUCESSO')
+    os.system('pause')
+    os.system('cls')
+
+def menu():
+    print('+----------------------------------------------------------------------+')
+    print('|               --------       SYSTEM - MENU       --------            |')
+    print('+----------------------------------------------------------------------+')
+    print('|                 01 - Cadastrar                                       |')
+    print('|                 02 - Alimenta-se                                     |')
+    print('|                 03 - Consultar por Data                              |')
+    print('|                 04 - Dados do usario                                 |')
+    print('|                 05 - Editar                                          |')
+    print('|                 06 - Deleta Alimento                                 |')
+    print('|                 07 - Sair                                            |')
+    print('+----------------------------------------------------------------------+')
+
+r = 0
+while r != 7:
+    menu()
+    r = int(input('Digite: '))
+    os.system('cls')
+    if (r == 1):
+        print('+-----------------------------------+')
+        print('|       PAINEL DE CADASTRO          |')
+        print('+-----------------------------------+')
+        nome = input('NOME: ')
+        peso = float(input('PESO: '))
+        altura = float(input('ALTURA: '))
+        sexo = input('SEXO: ')
+        tdee = float(input('TDEE: '))
+        bd_insert(nome, peso, altura, sexo, tdee)
+        print('CADASTRO CONCLUIDO COM SUCESSO {}'.format(nome))
+    elif (r == 2):
+        insert_a()
+    else:
+        print('OPCAO INVALIDA OU INATIVA')
 
 def caloria_bd(): # Total de calorias gasta no dia agrs #
     print('+--------------------------------------+')
@@ -29,8 +79,6 @@ def caloria_bd(): # Total de calorias gasta no dia agrs #
         print('| DATA INFORMADA INVALIDA              |'.format(total))
         print('+--------------------------------------+')
 
-
-caloria_bd()
 
 os.system('pause')
 
