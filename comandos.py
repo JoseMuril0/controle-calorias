@@ -77,3 +77,9 @@ def alimento_delete (descricao, datas): # deleta alimento #
     return """
     DELETE FROM alimenta WHERE descricao = '{}' and datas = '{}'
     """.format(descricao, datas)
+
+@commit_close
+def delete_alimento (iddpessoa): # Deleta alimento cujo o idpessoa jáa não existe mais #
+    return """
+    DELETE FROM alimenta WHERE id_pessoa = {}
+    """.format(iddpessoa)

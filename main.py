@@ -1,11 +1,13 @@
 from comandos import bd_insert, bd_select_dados, bd_update_peso, bd_update_tdee
 from comandos import insert_Alimento, select_cal, bd_delete
-from comandos import alimento_delete
+from comandos import alimento_delete, delete_alimento
 from pprint import pprint
 import os
 
 #alimento_delete('SORVETE 200G', '19/02/2018')
-
+#bd_delete(3)
+#delete_alimento(3)
+# deu tudo certo
 def insert_a():
     print('+-----------------------------------+')
     print('|             ALIMENTO              |')
@@ -21,7 +23,7 @@ def insert_a():
 
 def menu():
     print('+----------------------------------------------------------------------+')
-    print('|               --------       SYSTEM - MENU       --------            |')
+    print('|                              SYSTEM - MENU                           |')
     print('+----------------------------------------------------------------------+')
     print('|                 01 - Cadastrar                                       |')
     print('|                 02 - Alimenta-se                                     |')
@@ -29,7 +31,8 @@ def menu():
     print('|                 04 - Dados do usario                                 |')
     print('|                 05 - Editar                                          |')
     print('|                 06 - Deleta Alimento                                 |')
-    print('|                 07 - Sair                                            |')
+    print('|                 07 - Deletar Usuario                                 |')
+    print('|                 08 - Sair                                            |')
     print('+----------------------------------------------------------------------+')
 
 r = 0
