@@ -15,7 +15,7 @@ def commit_close(func):
     return decorator
 
 @commit_close
-def bd_delete (id_pessoa):
+def bd_delete (id_pessoa): # Deleta pessoa de acordo com o id#
     return """
     DELETE FROM pessoa WHERE idpessoa = {}
     """.format(id_pessoa)
@@ -43,7 +43,7 @@ def bd_select_dados (ide): # Traz um usuario pesquisado#
     cur = con.cursor()
     sql = 'SELECT * FROM pessoa WHERE idpessoa = ?'
     for val in cur.execute(sql, (ide, )):
-        print(val)
+        return val
 
 
 '''
