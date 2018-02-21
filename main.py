@@ -4,7 +4,18 @@ from comandos import alimento_delete, delete_alimento
 from pprint import pprint
 import os
 
-#alimento_delete(1, 'ARROZ 160G', '18/02/2018')
+def calc_ganhos ():
+    print('========================= [Calc Ganhos] ==================================')
+    ganhos_porcao = float(input('Informe quantas gramas tem uma porcao(G): '))
+    ganhos_cal = float(input('Informe quantas calorias gerada pelas porcoes(Kcal): '))
+    ganhos_consumido = float(input('Consumiu? '))
+    total = (ganhos_cal * ganhos_consumido) / ganhos_porcao
+    print('O total de calorias consumidas foi: {}'.format(total))
+    print('========================= [Calc Ganhos] ==================================')
+    os.system('pause')
+    os.system('cls')
+    return total
+
 def func_delete_alimento(): # Deletar alimentos de acordo com a data#
     print('+-----------------------------------+')
     print('|          EXCLUIR DADOS            |')
@@ -92,7 +103,7 @@ def insert_a(): # Insere eu alimento de uma pessoa #
     print('|             ALIMENTO              |')
     print('+-----------------------------------+')
     descricao = input('DESCRICAO: ')
-    calorias = float(input('CALORIAS: '))
+    calorias = calc_ganhos()
     datas = input('DATA (xx/xx/xxxx): ')
     idpessoa = int(input('ID: '))
     insert_Alimento(descricao, calorias, datas, idpessoa)
@@ -115,6 +126,13 @@ def func_update_usuario (): # jaja implemento#
         nome = input('NOME DO USUARIO: ')
         bd_update_tdee(tdee, nome)
         print('------------------------------------')
+    os.system('pause')
+    os.system('cls')
+
+def delete_user (): # deleta usario e todos alimentos que ele consumiu #
+    id_pessoa = int(input('ID: '))
+    bd_delete(id_pessoa)
+    delete_alimento(id_pessoa)
     os.system('pause')
     os.system('cls')
 
@@ -149,17 +167,11 @@ while r != 8:
         func_update_usuario()
     elif (r == 6):
         func_delete_alimento()
+    elif (r == 7):
+        delete_user()
+    elif (r == 8):
+        print('PROGRANA FINALIZADO')
     else:
         print('OPCAO INVALIDA OU INATIVA')
 
 os.system('pause')
-
-#bd_insert('JOSE MURILLO', 71.00, 1.73, 'MASC', 2000.00)
-#insert_Alimento('FEIJOADA 220G', 650.00, '18/02/2018', 2)
-#insert_Alimento('ARROZ 160G', 192.00, '18/02/2018', 1)
-#insert_Alimento('OVO 2U', 90.00, '18/02/2018', 1)
-#insert_Alimento('CHOCOLATE 90G', 200.00, '18/02/2018', 1)
-#alimento_delete('SORVETE 200G', '19/02/2018')
-#bd_delete(3)
-#delete_alimento(2)
-# deu tudo certo
