@@ -4,6 +4,37 @@ from comandos import alimento_delete, delete_alimento
 from pprint import pprint
 import os
 
+def imprimir_tbl ():
+    print('===============   TABELA   =================')
+    print('(Exercício mínimo):         1.20')
+    print('(1-3 dias por semana):      1.38')
+    print('(3-5 dias por semana):      1.55')
+    print('(6-7 dias por semana):      1.73')
+    print('(Atleta, 2x por dia):       1.90')
+    print('===============   TABELA   =================')
+
+def calc_gasto ():
+    print('=============== tdee ==================')
+    peso = float(input('Informe o seu peso (KG): '))
+    altura = float(input('Informe a sua altura (CM): '))
+    idade = int(input('Informe a sua idade: '))
+    sexo = input('Informe o seu sexo (M/F): ')
+    if sexo == 'MASC':
+        tdee = (10 * peso) + (6.25 * altura) - (5 * idade) + 5
+        print('[M] CALCULO tdee: {}'.format(tdee))
+    elif sexo == 'FEMI':
+        tdee = (10 * peso) + (6.25 * altura) - (5 * idade) - 161
+        print('[F] CALCULO tdee: {}'.format(tdee))
+    print('=============== tdee ==================')
+    # imprimir tabela:
+    imprimir_tbl()
+    atvfisica = float(input('Atividade fisica: '))
+    gasto_atv = (tdee * atvfisica)
+    print('Gasto acrecentado na tdee: {}'.format(gasto_atv))
+    os.system('pause')
+    os.system('cls')
+    return gasto_atv
+
 def calc_ganhos ():
     print('========================= [Calc Ganhos] ==================================')
     ganhos_porcao = float(input('Informe quantas gramas tem uma porcao(G): '))
@@ -36,7 +67,7 @@ def cadastro_pessoa():
     peso = float(input('PESO: '))
     altura = float(input('ALTURA: '))
     sexo = input('SEXO: ')
-    tdee = float(input('TDEE: '))
+    tdee = calc_gasto()
     bd_insert(nome, peso, altura, sexo, tdee)
     print('---------------------------------------')
     os.system('pause')
@@ -122,7 +153,7 @@ def func_update_usuario (): # jaja implemento#
         bd_update_peso(peso, nome)
         print('-------------------------------------')
     elif r == 'TDEE':
-        tdee = float(input('NOVO TDEE: '))
+        tdee = calc_gasto()
         nome = input('NOME DO USUARIO: ')
         bd_update_tdee(tdee, nome)
         print('------------------------------------')
