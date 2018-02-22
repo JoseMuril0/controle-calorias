@@ -4,6 +4,39 @@ from comandos import alimento_delete, delete_alimento
 from pprint import pprint
 import os
 
+def mostra_alimentos(b):
+    print('---------------------------------------')
+    print('   ID DO ALIMENTO: {}'.format(b[0]))
+    print('   DESCRICAO: {}'.format(b[1]))
+    print('   CALORIAS: {} KCAL'.format(b[2]))
+    print('   ID PESSOA: {}'.format(b[4]))
+    print('---------------------------------------')
+    print('\n')
+
+def lista_alimento(): # Total de calorias gasta no dia agrs #
+    print('+--------------------------------------+')
+    print('|           SYSTEM DATE                |')
+    print('+--------------------------------------+')
+    datas = input('Digite um data no modelo (xx/xx/xxxx): ')
+    idpessoa = int(input('Digite o seu id: '))
+    a = select_cal(datas, idpessoa)
+    cont = 0
+    os.system('cls')
+    print('---------------------------------------')
+    print('       TODOS ALIMENTOS CONSUMIDOS      ')
+    print('---------------------------------------')
+    if (a == None):
+        print('none')
+        os.system('pause')
+        os.system('cls')
+    else:
+        for val in a:
+            b = a[cont]
+            mostra_alimentos(b)
+            cont += 1
+        os.system('pause')
+        os.system('cls')
+
 def imprimir_tbl ():
     print('===============   TABELA   =================')
     print('(Exercício mínimo):         1.20')
@@ -178,11 +211,12 @@ def menu(): # menu #
     print('|                 05 - Editar                                          |')
     print('|                 06 - Deleta Alimento                                 |')
     print('|                 07 - Deletar Usuario                                 |')
-    print('|                 08 - Sair                                            |')
+    print('|                 08 - Mostra Alimentos                                |')
+    print('|                 09 - Sair                                            |')
     print('+----------------------------------------------------------------------+')
 
 r = 0
-while r != 8:
+while r != 9:
     menu()
     r = int(input('Digite: '))
     os.system('cls')
@@ -201,6 +235,8 @@ while r != 8:
     elif (r == 7):
         delete_user()
     elif (r == 8):
+        lista_alimento()
+    elif (r == 9):
         print('PROGRANA FINALIZADO')
     else:
         print('OPCAO INVALIDA OU INATIVA')
