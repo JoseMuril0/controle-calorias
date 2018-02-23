@@ -46,6 +46,7 @@ def bd_select_dados (ide): # Traz um usuario pesquisado#
         return val
 
 
+
 '''
  Trabalahndo com a tabela alimentar: INSERTS, UPDATES, SELECTS.
 '''

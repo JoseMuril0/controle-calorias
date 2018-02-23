@@ -120,6 +120,12 @@ def mostra_dados (lista_aux): # mostra os dados que recebeu#
     os.system('pause')
     os.system('cls')
 
+def func_dados(ide):
+    lista_aux = []
+    pessoa = bd_select_dados(ide)
+    for val in [0, 1, 2, 3, 4, 5]:
+        lista_aux.append(pessoa[val])
+    mostra_dados(lista_aux)
 def func_dados_usuario(): # Busca a tupla para mostra_dados #
     lista_aux = []
     id_pessoa = int(input('Digite o ID: '))
@@ -149,7 +155,7 @@ def caloria_bd(): # Total de calorias gasta no dia agrs #
         total += calc
         cont += 1
     if total > 0:
-        print(bd_select_dados(idpessoa))
+        func_dados(idpessoa)
         print('+--------------------------------------+')
         print('| DATA: {}                     |'.format(datas))
         print('| CALORIAS TOTAIS: {} KCAL         |'.format(total))
@@ -212,11 +218,12 @@ def menu(): # menu #
     print('|                 06 - Deleta Alimento                                 |')
     print('|                 07 - Deletar Usuario                                 |')
     print('|                 08 - Mostra Alimentos                                |')
-    print('|                 09 - Sair                                            |')
+    print('|                 09 - Todos Usuarios                                  |')
+    print('|                 10 - Sair                                            |')
     print('+----------------------------------------------------------------------+')
 
 r = 0
-while r != 9:
+while r != 10:
     menu()
     r = int(input('Digite: '))
     os.system('cls')
@@ -237,7 +244,11 @@ while r != 9:
     elif (r == 8):
         lista_alimento()
     elif (r == 9):
-        print('PROGRANA FINALIZADO')
+        print('Ainda nao implementada :(')
+    elif (r == 10):
+        print('+-----------------------------------------+')
+        print('|          FIM DO PROGRAMA                |')
+        print('+-----------------------------------------+')
     else:
         print('OPCAO INVALIDA OU INATIVA')
 
